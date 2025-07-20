@@ -1,5 +1,5 @@
 /*!
- * Pagack - Open Source Project
+ * [Pagack - Open Source Project]
  * 
  * MIT License
  * 
@@ -12,9 +12,6 @@
  * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
-
-
-
 
 console.log("[Pagack] PagerDuty Auto-Acknowledger script loaded.");
 
