@@ -1,0 +1,30 @@
+{
+  "name": "pagack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "content.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kashan-1/pagack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kashan-1/pagack/issues"
+  },
+  "homepage": "https://github.com/kashan-1/pagack#readme",
+  "devDependencies": {
+    "@eslint/css": "^0.10.0",
+    "@eslint/js": "^9.31.0",
+    "@eslint/json": "^0.13.0",
+    "@eslint/markdown": "^7.0.0",
+    "eslint": "^9.31.0",
+    "eslint-plugin-html": "^8.1.3",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2"
+  }
+}
