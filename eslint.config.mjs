@@ -40,11 +40,6 @@ export default defineConfig([
   {
     files: ["**/*.html"],
     plugins: { html: htmlPlugin },
-    languageOptions: {
-      parser: htmlPlugin.parsers.html,
-    },
-    rules: {
-      // Optionally add html-specific rules here
-    },
+    processor: htmlPlugin.processors.html,
   },
 ]);
