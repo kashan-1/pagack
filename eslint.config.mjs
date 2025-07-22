@@ -1,37 +1,32 @@
+// eslint.config.mjs
 import js from "@eslint/js";
-import globals from "globals";
-import json from "@eslint/json";
-import markdown from "@eslint/markdown";
-import css from "@eslint/css";
-import { defineConfig } from "eslint/config";
+import htmlPlugin from "@html-eslint/eslint-plugin";
+import htmlParser from "@html-eslint/parser";
 
-export default defineConfig([
-  { ignores: ["package-lock.json", "node_modules/**", "dist/**"] },
+export default [
   {
-    files: ["**/*.{js,mjs,cjs}"],
-    plugins: { js },
-    extends: ["js/recommended"],
+    files: ["**/*.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+    },
+    plugins: {
+      js,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    },
   },
   {
-    files: ["**/*.{js,mjs,cjs}"],
-    languageOptions: { globals: globals.browser },
+    files: ["**/*.html"],
+    languageOptions: {
+      parser: htmlParser,
+    },
+    plugins: {
+      html: htmlPlugin,
+    },
+    rules: {
+      ...htmlPlugin.configs.recommended.rules,
+    },
   },
-  {
-    files: ["**/*.json"],
-    plugins: { json },
-    language: "json/json",
-    extends: ["json/recommended"],
-  },
-  {
-    files: ["**/*.md"],
-    plugins: { markdown },
-    language: "markdown/gfm",
-    extends: ["markdown/recommended"],
-  },
-  {
-    files: ["**/*.css"],
-    plugins: { css },
-    language: "css/css",
-    extends: ["css/recommended"],
-  },
-]);
+];
