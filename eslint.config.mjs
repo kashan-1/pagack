@@ -4,9 +4,12 @@ import json from "@eslint/json";
 import markdown from "@eslint/markdown";
 import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
+import htmlPlugin from "eslint-plugin-html";
 
 export default defineConfig([
-  { ignores: ["package-lock.json", "node_modules/**", "dist/**"] },
+  {
+    ignores: ["package-lock.json", "node_modules/**", "dist/**"],
+  },
   {
     files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },
@@ -33,5 +36,15 @@ export default defineConfig([
     plugins: { css },
     language: "css/css",
     extends: ["css/recommended"],
+  },
+  {
+    files: ["**/*.html"],
+    plugins: { html: htmlPlugin },
+    languageOptions: {
+      parser: htmlPlugin.parsers.html,
+    },
+    rules: {
+      // Optionally add html-specific rules here
+    },
   },
 ]);
