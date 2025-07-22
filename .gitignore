@@ -39,4 +39,4 @@ Thumbs.db
 coverage/
 
 # Optional lock files (only if you don’t want to commit them)
-package-lock.json
+#package-lock.json
