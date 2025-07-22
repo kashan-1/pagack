@@ -3,7 +3,6 @@
   "name": "Pagack",
   "version": "1.0",
   "author": "Kashan Ali",
-  "license": "MIT",
   "description": "Automatically acknowledges triggered PagerDuty incidents every 3 minutes Automatically. (Pagack - An open source project by Kashan Ali)",
   "permissions": ["scripting", "tabs", "activeTab", "storage", "webNavigation"],
   "action": {
