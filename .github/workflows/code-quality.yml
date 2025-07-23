@@ -22,9 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint for JS/HTML (with ESM support)
+      - name: Run ESLint for JS/HTML
         run: |
-          node --loader=esm $(which eslint) . --ext .js,.html
+          npx eslint . --ext .js,.html
 
       - name: Validate JSON files
         run: |

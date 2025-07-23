@@ -1,20 +1,23 @@
-// eslint.config.mjs
 import js from "@eslint/js";
 import htmlPlugin from "@html-eslint/eslint-plugin";
 import htmlParser from "@html-eslint/parser";
 
 export default [
+  js.configs.recommended,
   {
     files: ["**/*.js"],
     languageOptions: {
-      ecmaVersion: "latest",
+      ecmaVersion: 2022,
       sourceType: "module",
-    },
-    plugins: {
-      js,
-    },
-    rules: {
-      ...js.configs.recommended.rules,
+      globals: {
+        window: "readonly",
+        document: "readonly",
+        console: "readonly",
+        location: "readonly",
+        setTimeout: "readonly",
+        setInterval: "readonly",
+        clearInterval: "readonly",
+      },
     },
   },
   {
@@ -23,10 +26,10 @@ export default [
       parser: htmlParser,
     },
     plugins: {
-      html: htmlPlugin,
+      "@html-eslint": htmlPlugin,
     },
     rules: {
-      ...htmlPlugin.configs.recommended.rules,
+      "@html-eslint/require-lang": "error",
     },
   },
 ];
