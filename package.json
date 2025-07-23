@@ -2,6 +2,7 @@
   "name": "pagack",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "content.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +23,8 @@
     "@eslint/js": "^9.31.0",
     "@eslint/json": "^0.13.0",
     "@eslint/markdown": "^7.0.0",
+    "@html-eslint/eslint-plugin": "^0.43.0",
+    "@html-eslint/parser": "^0.43.0",
     "eslint": "^9.31.0",
     "eslint-plugin-html": "^8.1.3",
     "globals": "^16.3.0",
