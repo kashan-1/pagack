@@ -1,5 +1,5 @@
 /*!
- * [Pagack - Open Source Project]
+ * Pagack - Open Source Project
  *
  * MIT License
  *
@@ -12,77 +12,89 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
  */
+/* global chrome */
 
-console.log("[Pagack] PagerDuty Auto-Acknowledger script loaded.");
+console.log("[Pagack] Script loaded, checking if enabled...");
 
-// Wait 10 seconds
-setTimeout(() => {
-  console.log("[Pagack] Searching incident rows for triggered incidents...");
+chrome.storage.local.get(["pagackEnabled"], (result) => {
+  const isEnabled = result.pagackEnabled !== false;
 
-  const incidentRows = document.querySelectorAll("tr.ember-view"); // each incident row
-
-  let incidentSelected = false;
-
-  incidentRows.forEach((row) => {
-    const statusCell = row.querySelector(".incident-status");
-    const checkbox = row.querySelector('input[type="checkbox"]');
-
-    if (statusCell && checkbox) {
-      const statusText = statusCell.textContent?.trim().toLowerCase();
-
-      if (statusText.includes("triggered")) {
-        console.log("[Pagack] Found triggered incident, selecting checkbox...");
-        checkbox.click();
-        incidentSelected = true;
-        waitAndClickAcknowledge();
-        return; // only select the first triggered incident
-      }
-    }
-  });
-
-  if (!incidentSelected) {
-    console.log("[Pagack] No triggered incidents found on this page.");
+  if (!isEnabled) {
+    console.log("[Pagack] Extension is currently disabled.");
+    return;
   }
-}, 10000); // wait 10 seconds
 
-function waitAndClickAcknowledge() {
-  console.log("[Pagack] Waiting for Acknowledge button to become enabled...");
+  console.log("[Pagack] Extension is active. Starting auto-ack logic...");
 
-  const startTime = Date.now();
-  const maxWait = 15000; // 15s timeout
-  const interval = 500; // poll every 0.5s
+  setTimeout(() => {
+    console.log("[Pagack] Searching incident rows for triggered incidents...");
+    const incidentRows = document.querySelectorAll("tr.ember-view");
+    let incidentSelected = false;
 
-  const intervalId = setInterval(() => {
-    const elapsed = Date.now() - startTime;
+    incidentRows.forEach((row) => {
+      const statusCell = row.querySelector(".incident-status");
+      const checkbox = row.querySelector('input[type="checkbox"]');
 
-    const ackButton = document.querySelector("a.ack-incidents");
-    if (ackButton) {
-      const isVisible = ackButton.offsetParent !== null;
-      const isDisabled =
-        ackButton.getAttribute("aria-disabled") === "true" ||
-        ackButton.classList.contains("disabled");
+      if (statusCell && checkbox) {
+        const statusText = statusCell.textContent?.trim().toLowerCase();
 
-      if (isVisible && !isDisabled) {
-        console.log("[Pagack] Acknowledge button enabled, clicking...");
-        ackButton.click();
-        clearInterval(intervalId);
-        return;
-      } else {
-        console.log("[Pagack] Acknowledge button found but still disabled...");
+        if (statusText.includes("triggered")) {
+          console.log(
+            "[Pagack] Found triggered incident, selecting checkbox...",
+          );
+          checkbox.click();
+          incidentSelected = true;
+          waitAndClickAcknowledge();
+          return;
+        }
       }
-    } else {
-      console.log("[Pagack] Acknowledge button not yet in DOM...");
-    }
+    });
 
-    if (elapsed > maxWait) {
-      console.log("[Pagack] Timed out waiting for Acknowledge button.");
-      clearInterval(intervalId);
+    if (!incidentSelected) {
+      console.log("[Pagack] No triggered incidents found on this page.");
     }
-  }, interval);
-}
+  }, 10000);
 
-// Reload tab after 20 seconds
-setTimeout(() => {
-  console.log("[Pagack] Reloading PagerDuty tab...");
-  location.reload();
-}, 180000); // 5 minutes = 600,000 ms (minues_value = ms_value x 60000)
+  function waitAndClickAcknowledge() {
+    console.log("[Pagack] Waiting for Acknowledge button to become enabled...");
+
+    const startTime = Date.now();
+    const maxWait = 15000;
+    const interval = 500;
+
+    const intervalId = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const ackButton = document.querySelector("a.ack-incidents");
+
+      if (ackButton) {
+        const isVisible = ackButton.offsetParent !== null;
+        const isDisabled =
+          ackButton.getAttribute("aria-disabled") === "true" ||
+          ackButton.classList.contains("disabled");
+
+        if (isVisible && !isDisabled) {
+          console.log("[Pagack] Acknowledge button enabled, clicking...");
+          ackButton.click();
+          clearInterval(intervalId);
+          return;
+        } else {
+          console.log(
+            "[Pagack] Acknowledge button found but still disabled...",
+          );
+        }
+      } else {
+        console.log("[Pagack] Acknowledge button not yet in DOM...");
+      }
+
+      if (elapsed > maxWait) {
+        console.log("[Pagack] Timed out waiting for Acknowledge button.");
+        clearInterval(intervalId);
+      }
+    }, interval);
+  }
+
+  setTimeout(() => {
+    console.log("[Pagack] Reloading PagerDuty tab...");
+    location.reload();
+  }, 180000); // 3 minutes
+});
