@@ -1,4 +1,8 @@
-# Pagack 
+# Pagack
+
+## `</>` Project Status
+
+[![Code Quality](https://img.shields.io/github/actions/workflow/status/kashan-1/pagack/code-quality.yml?branch=main&style=flat-square&label=Code%20Quality)](https://github.com/kashan-1/pagack/actions/workflows/code-quality.yml)
 
 ## PagerDuty Auto-Acknowledge Extension
 
@@ -23,7 +27,6 @@ This Chrome extension automatically acknowledges **triggered alerts** on [PagerD
 
 > Once installed and active, it will automatically begin monitoring for PagerDuty alerts.
 
-## It looks like this when correctly installed:
+## It looks like this when correctly installed: 
 
 <img width="453" height="266" alt="image" src="https://github.com/user-attachments/assets/b159764d-732d-4a4f-8b4b-4c0e474b8d91" />
-
