@@ -7,7 +7,7 @@
 
 ### Enhanced
 - Added an ON/OFF toggle button in the UI for the extension.
-- Users can now manually enable or disable the extension directly from the UI.
+- Users can now manually enable or disable the extension directly from the user interface.
 - The backend is now controlled via the UI, eliminating the need to manually turn off the extension.
 
 ## [1.0.0] - 2025-07-19
