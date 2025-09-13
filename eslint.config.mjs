@@ -17,6 +17,7 @@ export default [
         setTimeout: "readonly",
         setInterval: "readonly",
         clearInterval: "readonly",
+        chrome: "readonly", //allow chrome API without errors in linters
       },
     },
   },
