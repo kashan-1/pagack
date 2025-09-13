@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Pagack",
-  "version": "1.1",
+  "version": "1.2.0",
   "author": "Kashan Ali",
   "description": "Automatically acknowledges triggered PagerDuty incidents every 3 minutes Automatically. (Pagack - An open source project by Kashan Ali)",
   "permissions": ["scripting", "tabs", "activeTab", "storage", "webNavigation"],
@@ -15,7 +15,8 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://*.pagerduty.com/*"],
+      "matches": ["*://*.pagerduty.com/incidents"],
+
       "js": ["content.js"],
       "run_at": "document_idle"
     }
