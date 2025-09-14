@@ -48,7 +48,7 @@ jobs:
       - name: Zip extension source (src only)
         run: |
           cd src
-          zip -r ../pagack-v${VERSION}.zip .
+          zip -r ../pagack-${VERSION}.zip .
           cd ..
 
       - name: Create GitHub Release
@@ -60,4 +60,4 @@ jobs:
             Automated release for version v${{ env.VERSION }}.
           draft: false
           prerelease: false
-          files: pagack-v${{ env.VERSION}}.zip
+          files: pagack-${{ env.VERSION }}.zip
