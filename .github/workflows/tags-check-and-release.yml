@@ -1,0 +1,63 @@
+# This GitHub workflow file will:
+# - Read the extension version from src/manifest.json
+# - Check if a Git tag with that version already exists
+# - If the tag exists → it will stop and throw an error (ask you to bump the version)
+# - If the tag does not exist → it will create the tag, push it, and create a release
+# - The release will include a packaged zip file named pagack-<version>.zip containing only the src/ directory
+
+name: Tag and Release
+
+on:
+  workflow_dispatch: # manual trigger for testing
+
+jobs:
+  tag-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # allow pushing tags & creating releases
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # fetch full history + tags
+
+      - name: Read version from manifest.json
+        id: manifest
+        run: |
+          VERSION=$(jq -r .version src/manifest.json)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if tag exists
+        run: |
+          if git rev-parse "v${VERSION}" >/dev/null 2>&1; then
+            echo "❌ Tag v${VERSION} already exists. Please bump the version in manifest.json."
+            exit 1
+          else
+            echo "✅ Tag v${VERSION} does not exist, continuing..."
+          fi
+
+      - name: Create and push git tag
+        run: |
+          git config user.name "kashan-1"
+          git config user.email "kashan1dev@gmail.com"
+          git tag -a "v${VERSION}" -m "Release v${VERSION}"
+          git push origin "v${VERSION}"
+
+      - name: Zip extension source (src only)
+        run: |
+          cd src
+          zip -r ../pagack-v${VERSION}.zip .
+          cd ..
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: Release v${{ env.VERSION }}
+          body: |
+            Automated release for version v${{ env.VERSION }}.
+          draft: false
+          prerelease: false
+          files: pagack-v${{ env.VERSION}}.zip
