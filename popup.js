@@ -102,6 +102,40 @@ document.addEventListener("DOMContentLoaded", () => {
       `${m.toString().padStart(2, "0")}:` +
       `${s.toString().padStart(2, "0")}`;
   }
+  // ---------------------------------- JS Dark/Loght Theme Code ------------------------>
+  const themeButton = document.getElementById("themeButton");
+
+  // Load saved theme
+  chrome.storage.sync.get(["theme"], (result) => {
+    if (result.theme === "dark") {
+      document.body.classList.add("dark-mode");
+      themeButton.classList.add("dark");
+      themeButton.querySelector(".icon").textContent = "🌙";
+    } else {
+      document.body.classList.add("light-mode");
+      themeButton.classList.remove("dark");
+      themeButton.querySelector(".icon").textContent = "🌞";
+    }
+  });
+
+  // On button click, toggle theme
+  themeButton.addEventListener("click", () => {
+    if (document.body.classList.contains("dark-mode")) {
+      document.body.classList.remove("dark-mode");
+      document.body.classList.add("light-mode");
+      themeButton.classList.remove("dark");
+      themeButton.querySelector(".icon").textContent = "🌞";
+      chrome.storage.sync.set({ theme: "light" });
+    } else {
+      document.body.classList.remove("light-mode");
+      document.body.classList.add("dark-mode");
+      themeButton.classList.add("dark");
+      themeButton.querySelector(".icon").textContent = "🌙";
+      chrome.storage.sync.set({ theme: "dark" });
+    }
+  });
+
+  //======================= END Dark/Loght Theme Code ==================================>
 
   function updateUI(isEnabled) {
     if (isEnabled) {
