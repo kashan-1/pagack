@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.1] - 2025-09-14
+
+### Enhanced
+- Added Dark/Light mode in the extension UI.
+
 ## [1.2.0] - 2025-09-13
 
 ### Fixed
