@@ -6,24 +6,24 @@
   "description": "Automatically acknowledges triggered PagerDuty incidents every 3 minutes Automatically. (Pagack - An open source project by Kashan Ali)",
   "permissions": ["scripting", "tabs", "activeTab", "storage", "webNavigation"],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "popup/popup.html",
     "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
     }
   },
   "content_scripts": [
     {
       "matches": ["*://*.pagerduty.com/incidents"],
 
-      "js": ["content.js"],
+      "js": ["content/content.js"],
       "run_at": "document_idle"
     }
   ],
   "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
   }
 }
