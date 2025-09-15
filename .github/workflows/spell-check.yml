@@ -1,0 +1,29 @@
+name: Spell Check
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+  workflow_dispatch: # manual trigger
+
+jobs:
+  spellcheck:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ✅ Run differently if local (act) vs GitHub
+      - name: Run spell check (GitHub Actions)
+        if: ${{ !env.ACT }}
+        uses: streetsidesoftware/cspell-action@v5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          files: "**/*.{js,ts,html,md,json,yml,yaml}"
+          config: cspell.json
+
+      - name: Run spell check (local with act)
+        if: ${{ env.ACT }}
+        run: npx cspell "**/*.{js,ts,html,md,json,yml,yaml}"

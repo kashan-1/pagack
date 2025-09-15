@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `${m.toString().padStart(2, "0")}:` +
       `${s.toString().padStart(2, "0")}`;
   }
-  // ---------------------------------- JS Dark/Loght Theme Code ------------------------>
+  // ---------------------------------- JS Dark/Light Theme Code ------------------------>
   const themeButton = document.getElementById("themeButton");
 
   // Load saved theme
@@ -135,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  //======================= END Dark/Loght Theme Code ==================================>
+  //======================= END Dark/Light Theme Code ==================================>
 
   function updateUI(isEnabled) {
     if (isEnabled) {

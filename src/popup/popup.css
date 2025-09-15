@@ -172,7 +172,7 @@ footer {
   text-align: center;
 }
 
-/* ---------------------------------- CSS Dark/Loght Theme Code ------------------------> */
+/* ---------------------------------- CSS Dark/Light Theme Code ------------------------> */
 
 .theme-button-container {
   display: flex;
@@ -220,4 +220,4 @@ body {
     background 0.3s,
     color 0.3s;
 }
-/* ======================= END Dark/Loght Theme Code ==================================> */
+/* ======================= END Dark/Light Theme Code ==================================> */
