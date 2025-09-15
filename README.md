@@ -2,7 +2,8 @@
 
 ## `</>` Project Status
 
-[![Code Quality Runners](https://img.shields.io/github/actions/workflow/status/kashan-1/pagack/code-quality.yml?branch=main&style=flat-square&label=Code%20Quality)](https://github.com/kashan-1/pagack/actions/workflows/code-quality.yml) [![Tag and Release](https://img.shields.io/github/actions/workflow/status/kashan-1/pagack/tags-check-and-release.yml?branch=main&style=flat-square&label=Tag%20and%20Release)](https://github.com/kashan-1/pagack/actions/workflows/tags-check-and-release.yml)
+[![Code Quality Runners](https://img.shields.io/github/actions/workflow/status/kashan-1/pagack/code-quality.yml?branch=main&style=flat-square&label=Code%20Quality)](https://github.com/kashan-1/pagack/actions/workflows/code-quality.yml) [![Tag and Release](https://img.shields.io/github/actions/workflow/status/kashan-1/pagack/tags-check-and-release.yml?branch=main&style=flat-square&label=Tag%20and%20Release)](https://github.com/kashan-1/pagack/actions/workflows/tags-check-and-release.yml) [![Spell Check](https://img.shields.io/github/actions/workflow/status/kashan-1/pagack/spell-check.yml?branch=main&style=flat-square&label=Spell%20Check)](https://github.com/kashan-1/pagack/actions/workflows/spell-check.yml)
+
 
 ## PagerDuty Auto-Acknowledge Extension
 
