@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.2.1.2] - 2025-09-15
+
+### Enhanced
+
+- Added spell check workflow.
+
 ## [1.2.1.1] - 2025-09-14
 
 ### Enhanced
