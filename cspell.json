@@ -1,12 +1,7 @@
 {
   "version": "0.2",
   "language": "en",
-  "ignorePaths": [
-    "node_modules",
-    "dist",
-    "build",
-    "*.lock"
-  ],
+  "ignorePaths": ["node_modules", "dist", "build", "*.lock"],
   "words": [
     "Kashan Ali",
     "Kashan",
@@ -17,6 +12,5 @@
     "ubuntu",
     "yaml",
     "json"
-
   ]
 }
